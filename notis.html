@@ -15,6 +15,10 @@
 <img src="qr-code.png">
  
     <script>
+	function randonombo(){
+	return Math.floor(Math.random * 1000000);
+	}
+
         function requestNotificationPermission() {
             if ("Notification" in window) {
                 Notification.requestPermission().then(permission => {
@@ -43,9 +47,10 @@
 function sendNotification2() {
     if (Notification.permission === "granted") {
         let spamInterval = setInterval(() => {
-            new Notification("Hello!", {
-                body: "Testing Spam Notifications for Sillies.",
-                icon: "https://via.placeholder.com/100"
+	let p = randonombo();
+            new Notification(randonombo(), {
+                body: randonombo(),
+                icon: `http://placehold.co/256x256/121212/bb00ff/png?text=${p}`
             });
         }, 1); // 1ms interval (fastest possible)
 

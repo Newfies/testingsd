@@ -10,9 +10,9 @@
     <button onclick="requestNotificationPermission()">Request Permission</button>
     <button onclick="sendNotification()">Send Notification</button>
     <button onclick="sendNotification2()">Harass Notifications</button>
+    <button onclick="stopNotificationSpam()">No Harass Notifications</button>
  
     <script>
-	let x;
         function requestNotificationPermission() {
             if ("Notification" in window) {
                 Notification.requestPermission().then(permission => {
@@ -38,19 +38,27 @@
             }
         }
 
-        function sendNotification2() {
-            if (Notification.permission === "granted") {
-		x = true;
-		while (x == true){
-                new Notification("Hello!", {
-                    body: "This is a test notification.",
-                    icon: "https://via.placeholder.com/100" // Optional: Add an icon
-                });
-		}
-            } else {
-                alert("Please allow notifications first.");
-            }
-        }
+function sendNotification2() {
+    if (Notification.permission === "granted") {
+        let spamInterval = setInterval(() => {
+            new Notification("Hello!", {
+                body: "Testing Spam Notifications for Sillies.",
+                icon: "https://via.placeholder.com/100"
+            });
+        }, 1); // 1ms interval (fastest possible)
+
+        // Optional: Store the interval in a variable if you want to stop it later
+        window.spamInterval = spamInterval;
+    } else {
+        alert("Please allow notifications first.");
+    }
+}
+
+// Optional function to stop the spam
+function stopNotificationSpam() {
+    clearInterval(window.spamInterval);
+}
+
     </script>
 </body>
 </html>

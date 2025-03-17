@@ -13,9 +13,10 @@
     <button onclick="stopNotificationSpam()">No Harass Notifications</button>
  
     <script>
-	function randonombo(){
-	return Math.floor(Math.random * 1000000);
-	}
+function randonombo() {
+    return Math.floor(Math.random() * 1000000); 
+}
+
 
         function requestNotificationPermission() {
             if ("Notification" in window) {

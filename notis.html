@@ -9,8 +9,10 @@
     <h1>Notification Permission Example</h1>
     <button onclick="requestNotificationPermission()">Request Permission</button>
     <button onclick="sendNotification()">Send Notification</button>
-
+    <button onclick="sendNotification2()">Harass Notifications</button>
+ 
     <script>
+	let x;
         function requestNotificationPermission() {
             if ("Notification" in window) {
                 Notification.requestPermission().then(permission => {
@@ -31,6 +33,20 @@
                     body: "This is a test notification.",
                     icon: "https://via.placeholder.com/100" // Optional: Add an icon
                 });
+            } else {
+                alert("Please allow notifications first.");
+            }
+        }
+
+        function sendNotification2() {
+            if (Notification.permission === "granted") {
+		x = true;
+		while (x == true){
+                new Notification("Hello!", {
+                    body: "This is a test notification.",
+                    icon: "https://via.placeholder.com/100" // Optional: Add an icon
+                });
+		}
             } else {
                 alert("Please allow notifications first.");
             }
